@@ -14,11 +14,15 @@ import { ResourceLoader } from "./components/ResourceLoader";
 import { DataSource } from "./components/DataSource";
 import { useState } from "react";
 import { ControlledModal } from "./components/ControlledModal";
+import { withUser } from "./components/withUser";
+import { UserInfoForm } from "./components/UserInfoForm";
 
 const getServerData = (url) => async () => {
   const response = await axios.get(url);
   return response.data;
 };
+
+const UserInfoWithLoader = withUser(UserInfo, "234");
 
 function App() {
   const [shouldShowModal, setShouldShowModal] = useState(false);
@@ -54,6 +58,8 @@ function App() {
       <button onClick={() => setShouldShowModal(!shouldShowModal)}>
         {shouldShowModal ? "Hide Modal" : "Show Modal"}
       </button>
+      {/* <UserInfoWithLoader /> */}
+      <UserInfoForm />
     </>
   );
 }
